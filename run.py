@@ -20,7 +20,7 @@ for file in glob.glob("supplier-data/descriptions/*.txt"):
         fruit["image_name"] = image_name
         fruits.append(fruit)
 http = "http://"
-ip = "34.66.48.248"
+ip = "35.226.112.225"
 url = http+ip+"/fruits/"
 for fruit in fruits:
     r = requests.post(url,data=fruit)
