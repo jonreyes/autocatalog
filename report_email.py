@@ -5,6 +5,7 @@ import requests
 import glob
 import reports
 import datetime
+import emails
 
 fruits = []
 for file in glob.glob("supplier-data/descriptions/*.txt"):
@@ -32,4 +33,9 @@ date = datetime.datetime.now()
 date = date.strftime("%x")
 title = "Processed Update on "+date
 reports.generate(attachment,title,paragraph)
-
+sender = "automation@example.com"
+receiver = "{}@example.com".format(os.environ.get("USER"))
+subject = "Upload Completed - Online Fruit Store"
+body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
+message = emails.generate(sender, receiver, subject, body, attachment)
+emails.send(message)
